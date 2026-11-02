@@ -1,0 +1,2531 @@
+
+:root {
+    --paper: #f7f4ee;
+    --white: #fffefa;
+    --ink: #29251f;
+    --muted: #82796d;
+    --gold: #b9965b;
+    --champagne: #d8c39b;
+    --line: rgba(117, 94, 59, 0.18);
+    --shadow: 0 24px 70px rgba(69, 53, 31, 0.10);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+.grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 20;
+    opacity: 0.10;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E");
+}
+
+/* NAVBAR */
+
+.navbar {
+    height: 76px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    margin: 0;
+    background: rgba(247, 244, 238, 0.86);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--line);
+}
+
+.logo {
+    font: 600 25px 'Playfair Display', serif;
+    letter-spacing: -2px;
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+.navbar nav {
+    display: flex;
+    gap: 32px;
+}
+
+.navbar nav a,
+.nav-button {
+    font: 10px 'DM Mono', monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: 0.3s;
+}
+
+.navbar nav a:hover,
+.nav-button:hover {
+    color: var(--gold);
+}
+
+.nav-button {
+    border: 1px solid var(--champagne);
+    padding: 12px 16px;
+}
+
+.menu-toggle {
+    display: none;
+    border: 0;
+    background: none;
+    font-size: 23px;
+    color: var(--ink);
+}
+
+/* GENERAL */
+
+.section {
+    width: min(1180px, 86%);
+    margin: auto;
+    padding: 100px 0;
+    position: relative;
+}
+
+.eyebrow {
+    font: 10px 'DM Mono', monospace;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 16px;
+    margin-bottom: 45px;
+    font: 10px 'DM Mono', monospace;
+    letter-spacing: 1px;
+    color: var(--gold);
+}
+
+.section-heading small {
+    color: var(--muted);
+}
+
+.section-title {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    margin-bottom: 35px;
+}
+
+.section-title h2,
+.about-text h2 {
+    font: clamp(48px, 6vw, 76px)/1.05 'Playfair Display', serif;
+    letter-spacing: -2px;
+}
+
+.section-title h2 em,
+.about-text h2 em,
+.hero h1 em,
+.closing h2 em {
+    color: var(--gold);
+    font-weight: 500;
+}
+
+.section-title > small {
+    text-align: right;
+    font: 9px/1.8 'DM Mono', monospace;
+    color: var(--muted);
+}
+
+/* HOME */
+
+.hero {
+    min-height: calc(100vh - 76px);
+    padding-top: 45px;
+    padding-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hero-top,
+.hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font: 9px 'DM Mono', monospace;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 7%;
+    padding: 45px 0;
+}
+
+.hero h1 {
+    font: clamp(80px, 10vw, 140px)/0.85 'Playfair Display', serif;
+    letter-spacing: -7px;
+}
+
+.description {
+    max-width: 390px;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--muted);
+    margin: 30px 0;
+}
+
+.discover {
+    display: inline-flex;
+    gap: 20px;
+    align-items: center;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 12px;
+    font: 10px 'DM Mono', monospace;
+    letter-spacing: 1px;
+}
+
+.discover span {
+    font-size: 20px;
+    color: var(--gold);
+}
+
+.hero-visual {
+    min-height: 480px;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+.orbit {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border: 1px solid rgba(185, 150, 91, 0.5);
+    border-radius: 50%;
+    box-shadow: 0 0 0 35px rgba(185, 150, 91, 0.04),
+                0 0 0 70px rgba(185, 150, 91, 0.03);
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: var(--shadow);
+}
+
+.profile-card {
+    width: min(350px, 80%);
+    padding: 15px;
+    transform: rotate(2deg);
+    z-index: 2;
+}
+
+.card-label {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0 12px;
+    font: 8px 'DM Mono', monospace;
+    color: var(--muted);
+}
+
+.hero-image {
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+    display: block;
+    background: #e8dfcf;
+}
+
+.profile-caption {
+    padding: 15px 3px 5px;
+}
+
+.profile-caption small {
+    font: 8px 'DM Mono', monospace;
+    color: var(--muted);
+}
+
+.profile-caption h3 {
+    font: 22px 'Playfair Display', serif;
+    margin-top: 7px;
+}
+
+.floating-label {
+    position: absolute;
+    z-index: 3;
+    background: var(--white);
+    padding: 13px 17px;
+    color: #88704b;
+    font: 10px 'DM Mono', monospace;
+    box-shadow: var(--shadow);
+}
+
+.label-one {
+    top: 65px;
+    right: 0;
+    transform: rotate(5deg);
+}
+
+.label-two {
+    bottom: 65px;
+    left: 0;
+    transform: rotate(-5deg);
+}
+
+.hero-bottom {
+    justify-content: flex-start;
+    gap: 15px;
+}
+
+.hero-bottom span {
+    width: 100px;
+    height: 1px;
+    background: var(--gold);
+}
+
+.hero {
+    min-height: 85vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+    padding: 80px 8%;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.eyebrow {
+    color: #b9965b;
+    letter-spacing: 3px;
+    font-size: 12px;
+}
+
+.hero-content h1 {
+    font-size: clamp(48px, 7vw, 85px);
+    color: #29251f;
+}
+
+.hero-content h1 span {
+    color: #b9965b;
+}
+
+.hero-description {
+    color: #82796d;
+    line-height: 1.8;
+    max-width: 450px;
+}
+
+.hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-photo {
+    width: 320px;
+    height: 400px;
+    border-radius: 180px 180px 25px 25px;
+    overflow: hidden;
+}
+
+.hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.floating-note {
+    position: absolute;
+    bottom: 30px;
+    right: 0;
+    background: #fffefa;
+    padding: 15px 22px;
+    border-radius: 15px;
+    color: #b9965b;
+    box-shadow: 0 8px 25px rgba(0,0,0,.1);
+}
+
+@media (max-width: 768px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ABOUT */
+
+.about-layout {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 11%;
+    align-items: center;
+}
+
+.about-photo {
+    height: 490px;
+    padding: 12px;
+    position: relative;
+    transform: rotate(-2deg);
+}
+
+.about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-photo span {
+    position: absolute;
+    bottom: 22px;
+    left: 25px;
+    color: white;
+    font: 9px 'DM Mono', monospace;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0);
+}
+
+.about-text h3 {
+    font-size: 15px;
+    margin: 27px 0 12px;
+}
+
+.about-text > p:not(.eyebrow) {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 2;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 25px;
+}
+
+.tags span {
+    font: 9px 'DM Mono', monospace;
+    border: 1px solid var(--line);
+    padding: 9px 12px;
+    color: #8a7657;
+}
+
+.about-section {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    align-items: center;
+    gap: 50px;
+    padding: 100px 8%;
+}
+
+.about-image {
+    width: 100%;
+    height: 400px;
+    border-radius: 25px;
+    overflow: hidden;
+    background: #e8dfd0;
+    border: 1px solid rgba(185, 150, 91, 0.4);
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.about-content h2 {
+    font-size: 42px;
+    color: #8c734f;
+    margin-bottom: 15px;
+}
+
+.about-content h3 {
+    color: #b9965b;
+    margin-bottom: 15px;
+}
+
+.about-content p {
+    color: #82796d;
+    line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+    .about-section {
+        grid-template-columns: 1fr;
+    }
+
+    .about-image {
+        height: 320px;
+    }
+}
+
+/* MOVIES */
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 30px;
+    padding: 10px 18px;
+    color: var(--muted);
+    font: 10px 'DM Mono', monospace;
+    transition: 0.3s;
+}
+
+.filter-btn:hover {
+    background: var(--ink);
+    color: white;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 28px 17px;
+}
+
+.movie-card {
+    min-width: 0;
+    cursor: pointer;
+    transition: 0.35s;
+}
+
+.movie-card:hover {
+    transform: translateY(-8px);
+}
+
+.movie-card.hidden {
+    display: none;
+}
+
+.poster {
+    height: 325px;
+    position: relative;
+    overflow: hidden;
+    background: #c89f5d;
+    box-shadow: 0 10px 24px rgba(60, 47, 28, 0.488);
+}
+
+.poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: 0.5s;
+}
+
+.movie-card:hover .poster img {
+    transform: scale(1.06);
+}
+
+.poster span {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 7px 9px;
+    background: rgba(255, 254, 250, 0.85);
+    font: 9px 'DM Mono', monospace;
+    color: var(--gold);
+}
+
+.movie-info {
+    padding: 13px 1px;
+}
+
+.movie-info h3 {
+    font: 17px 'Playfair Display', serif;
+    line-height: 1.3;
+}
+
+.movie-info p {
+    font-size: 11px;
+    color: var(--muted);
+    margin: 7px 0 10px;
+}
+
+.movie-info small {
+    font: 8px 'DM Mono', monospace;
+    color: var(--gold);
+    letter-spacing: 1px;
+}
+
+/* HOBBIES */
+
+.hobby-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.hobby-card {
+    min-height: 220px;
+    padding: 25px 20px;
+    background: rgba(237, 236, 231, 0.816);
+    border: 1px solid white;
+    box-shadow: 0 12px 35px rgba(87,69,43,0.06);
+    transition: 0.35s;
+}
+
+.hobby-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--champagne);
+    box-shadow: var(--shadow);
+}
+
+.hobby-card > span {
+    display: block;
+    color: var(--gold);
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+.hobby-card small {
+    font: 8px 'DM Mono', monospace;
+    color: var(--gold);
+}
+
+.hobby-card h3 {
+    font: 21px 'Playfair Display', serif;
+    margin: 10px 0;
+}
+
+.hobby-card p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* PLAYLIST */
+
+.playlist-panel {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 35px;
+    padding: 25px;
+}
+
+.playlist-cover {
+    min-height: 340px;
+    background: linear-gradient(145deg, #e6d8bd, #b89a68);
+    color: white;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.playlist-cover::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(255,255,255,0.6);
+}
+
+.playlist-cover h2 {
+    font: clamp(45px, 5vw, 65px)/0.9 'Playfair Display', serif;
+    z-index: 1;
+}
+
+.playlist-cover h2 em {
+    color: #fff2d8;
+}
+
+.playlist-cover small,
+.playlist-cover span {
+    font: 8px 'DM Mono', monospace;
+    z-index: 1;
+}
+
+.song-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.song {
+    display: grid;
+    grid-template-columns: 30px 1fr 200px;
+    gap: 13px;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.song > span {
+    color: var(--gold);
+    font: 10px 'DM Mono', monospace;
+}
+
+.song > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.song strong {
+    font: 17px 'Playfair Display', serif;
+}
+
+.song small {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.song audio {
+    width: 100%;
+    height: 32px;
+}
+
+.playlist-hint {
+    font: 9px 'DM Mono', monospace;
+    color: var(--muted);
+    margin-top: 15px;
+}
+
+/* GALLERY */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr 1fr;
+    grid-auto-rows: 190px;
+    gap: 16px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(145deg, #e9e0d2, #c9b58e);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: 0.5s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.07);
+}
+
+.gallery-item.tall {
+    grid-row: span 2;
+}
+
+.gallery-item.wide {
+    grid-column: span 2;
+}
+
+.gallery-item span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 14px;
+    color: white;
+    background: linear-gradient(transparent, rgba(42,33,27,0.8));
+    font: 8px 'DM Mono', monospace;
+}
+
+/* CLOSING */
+
+.closing {
+    text-align: center;
+    padding: 110px 0 120px;
+    border-top: 1px solid var(--line);
+}
+
+.closing h2 {
+    font: clamp(58px, 8vw, 100px)/0.95 'Playfair Display', serif;
+    letter-spacing: -4px;
+}
+
+.closing > p:not(.eyebrow) {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 22px 0 30px;
+}
+
+.closing a {
+    display: inline-block;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 10px;
+    font: 10px 'DM Mono', monospace;
+}
+
+/* FOOTER */
+
+footer {
+    min-height: 75px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 7%;
+    color: var(--muted);
+    font: 8px 'DM Mono', monospace;
+}
+
+/* MODAL */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(28, 23, 17, 0.7);
+    backdrop-filter: blur(8px);
+    display: none;
+    place-items: center;
+    z-index: 50;
+    padding: 20px;
+}
+
+.modal.open {
+    display: grid;
+}
+
+.modal-content {
+    width: min(480px, 100%);
+    padding: 42px;
+    position: relative;
+}
+
+.modal-content h2 {
+    font: 38px 'Playfair Display', serif;
+    margin-bottom: 15px;
+}
+
+.modal-content > p:last-child {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.modal-content button {
+    position: absolute;
+    right: 18px;
+    top: 12px;
+    border: 0;
+    background: none;
+    font-size: 28px;
+    color: var(--muted);
+}
+
+/* SCROLL ANIMATION */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.8s, transform 0.8s;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .movie-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hobby-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .song {
+        grid-template-columns: 25px 1fr;
+    }
+
+    .song audio {
+        grid-column: 2;
+    }
+}
+
+@media (max-width: 650px) {
+    .navbar {
+        height: 66px;
+        padding: 0 6%;
+    }
+
+    .navbar nav {
+        display: none;
+        position: absolute;
+        top: 66px;
+        left: 0;
+        right: 0;
+        padding: 25px 7%;
+        background: var(--paper);
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .navbar nav.open {
+        display: flex;
+    }
+
+    .nav-button {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .section {
+        width: 88%;
+        padding: 75px 0;
+    }
+
+    .hero {
+        min-height: auto;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 50px 0 30px;
+    }
+
+    .hero h1 {
+        font-size: 90px;
+    }
+
+    .hero-visual {
+        min-height: 400px;
+    }
+
+    .orbit {
+        width: 320px;
+        height: 320px;
+    }
+
+    .profile-card {
+        width: 75%;
+    }
+
+    .hero-image {
+        height: 270px;
+    }
+
+    .about-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about-photo {
+        height: 390px;
+        width: 85%;
+        margin: auto;
+    }
+
+    .about-text h2,
+    .section-title h2 {
+        font-size: 52px;
+    }
+
+    .movie-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .poster {
+        height: 220px;
+    }
+
+    .playlist-panel {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+
+    .playlist-cover {
+        min-height: 240px;
+    }
+
+    .song {
+        grid-template-columns: 25px 1fr;
+    }
+
+    .song audio {
+        grid-column: 2;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 150px;
+        gap: 10px;
+    }
+
+    .gallery-item.tall {
+        grid-row: span 2;
+    }
+
+    .gallery-item.wide {
+        grid-column: span 2;
+    }
+
+    footer {
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 20px 6%;
+    }
+}
+
+
+/* ================================
+   LUXURY AURORA BACKGROUND
+================================ */
+
+body {
+    position: relative;
+    background: #f7f4ee;
+    isolation: isolate;
+}
+
+/* Aurora background */
+.animated-background {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+    background:
+        linear-gradient(
+            135deg,
+            #fffefa,
+            #f7f0e5,
+            #eee5f0,
+            #f5eadb,
+            #fffefa
+        );
+}
+
+/* Aurora light layers */
+.glow-orb {
+    position: absolute;
+    width: 75vw;
+    height: 65vh;
+    border-radius: 50%;
+    filter: blur(85px);
+    opacity: 0.45;
+    mix-blend-mode: multiply;
+    animation: auroraFlow 18s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+    background: linear-gradient(
+        120deg,
+        #e8d5b8,
+        #f8e9d5,
+        #e9d9ed
+    );
+    top: -15%;
+    left: -20%;
+}
+
+.orb-2 {
+    background: linear-gradient(
+        120deg,
+        #d9c5a5,
+        #e8d9ef,
+        #fff0d9
+    );
+    top: 20%;
+    right: -25%;
+    animation-delay: -6s;
+}
+
+.orb-3 {
+    background: linear-gradient(
+        120deg,
+        #fff1d6,
+        #e7d8e9,
+        #e5d3b9
+    );
+    bottom: -30%;
+    left: 15%;
+    animation-delay: -10s;
+}
+
+/* Aurora movement */
+@keyframes auroraFlow {
+    0% {
+        transform: translate(-5%, -5%) rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: translate(10%, 8%) rotate(15deg) scale(1.2);
+    }
+
+    100% {
+        transform: translate(-8%, 12%) rotate(-12deg) scale(1.1);
+    }
+}
+
+/* BACKGROUND LAYERS */
+.animated-background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.grain {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+}
+
+body {
+    position: relative;
+    isolation: isolate;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .glow-orb {
+        animation: none;
+    }
+}
+
+
+/* ================================
+   MOVING STARS EFFECT
+================================ */
+
+.animated-background::before,
+.animated-background::after {
+    content: "";
+    position: absolute;
+    inset: -100%;
+    pointer-events: none;
+    background-repeat: repeat;
+}
+
+/* Bintang lapisan pertama */
+.animated-background::before {
+    background-image:
+        radial-gradient(2px 2px at 50px 80px, #fff 95%, transparent),
+        radial-gradient(2px 2px at 180px 220px, #c9a96e 95%, transparent),
+        radial-gradient(3px 3px at 300px 120px, #fff 95%, transparent),
+        radial-gradient(2px 2px at 400px 300px, #d8bd8c 95%, transparent),
+        radial-gradient(2px 2px at 120px 400px, #fff 95%, transparent);
+
+    background-size: 450px 450px;
+    opacity: 0.8;
+    animation: starsDrift 20s linear infinite;
+}
+
+/* Bintang lapisan kedua */
+.animated-background::after {
+    background-image:
+        radial-gradient(3px 3px at 100px 150px, #fff6c4 95%, transparent),
+        radial-gradient(2px 2px at 250px 350px, #d8bd8c 95%, transparent),
+        radial-gradient(2px 2px at 380px 80px, #fff 95%, transparent),
+        radial-gradient(3px 3px at 450px 250px, #c9a96e 95%, transparent);
+
+    background-size: 550px 550px;
+    opacity: 0.55;
+    animation: starsDrift 55s linear infinite reverse;
+}
+
+/* Gerakan bintang */
+@keyframes starsDrift {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(180px, 260px, 0);
+    }
+}
+
+
+/* =================================
+   3D LUXE CYBER-GLASS EFFECT
+================================= */
+
+/* 3D perspective untuk area kartu */
+.film-card,
+.hobby-card,
+.gallery-item,
+.playlist-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+/* Efek kartu terangkat */
+.film-card:hover,
+.hobby-card:hover,
+.gallery-item:hover,
+.playlist-card:hover {
+    transform: translateY(-10px) rotateX(4deg) rotateY(-4deg);
+    box-shadow:
+        0 25px 45px rgba(91, 69, 39, 0.16),
+        0 0 25px rgba(216, 195, 155, 0.18);
+}
+
+/* Isi kartu seolah memiliki kedalaman */
+.film-card img,
+.gallery-item img {
+    transition: transform 0.5s ease;
+    transform: translateZ(20px);
+}
+
+.film-card:hover img,
+.gallery-item:hover img {
+    transform: translateZ(35px) scale(1.04);
+}
+
+/* Floating glass decoration */
+.glass-orb {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.65),
+        rgba(216,195,155,0.18)
+    );
+    border: 1px solid rgba(255,255,255,0.7);
+    box-shadow:
+        inset -10px -10px 25px rgba(185,150,91,0.12),
+        0 20px 50px rgba(185,150,91,0.12);
+    backdrop-filter: blur(10px);
+    animation: floating3D 7s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes floating3D {
+    0%, 100% {
+        transform: translateY(0) rotateX(0deg) rotateY(0deg);
+    }
+    50% {
+        transform: translateY(-25px) rotateX(15deg) rotateY(20deg);
+    }
+}
+
+/* Aksen cahaya saat hover */
+.film-card,
+.hobby-card,
+.gallery-item,
+.playlist-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.film-card::after,
+.hobby-card::after,
+.gallery-item::after,
+.playlist-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(255,255,255,0.25) 50%,
+        transparent 70%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.7s ease;
+    pointer-events: none;
+}
+
+.film-card:hover::after,
+.hobby-card:hover::after,
+.gallery-item:hover::after,
+.playlist-card:hover::after {
+    transform: translateX(120%);
+}
+
+/* Matikan animasi 3D jika pengguna memilih reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .glass-orb {
+        animation: none;
+    }
+
+    .film-card,
+    .hobby-card,
+    .gallery-item,
+    .playlist-card {
+        transition: none;
+    }
+}
+
+
+/* =====================================
+   PIECES OF ME — 3D LUXURY UNIVERSE
+===================================== */
+
+/* 1. Cahaya mengikuti mouse */
+
+/* MOUSE FOLLOWING GLOW */
+.cursor-glow {
+    position: fixed !important;
+    width: 250px !important;
+    height: 250px !important;
+    border-radius: 50% !important;
+    background: radial-gradient(
+        circle,
+        rgba(218, 177, 105, 0.45) 0%,
+        rgba(218, 177, 105, 0.2) 40%,
+        transparent 75%
+    ) !important;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    z-index: 999999 !important;
+    pointer-events: none !important;
+    opacity: 1 !important;
+}
+
+
+/* 2. Bubble kaca */
+.glass-bubble {
+    position: fixed;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.8);
+    background: radial-gradient(
+        circle at 30% 25%,
+        rgba(255,255,255,.85),
+        rgba(216,195,155,.12) 55%,
+        rgba(185,150,91,.08)
+    );
+    box-shadow:
+        inset -8px -8px 20px rgba(185,150,91,.12),
+        0 10px 35px rgba(185,150,91,.12);
+    backdrop-filter: blur(3px);
+    animation: bubbleFloat 9s ease-in-out infinite;
+}
+
+.bubble-one {
+    width: 85px;
+    height: 85px;
+    top: 20%;
+    left: 7%;
+}
+
+.bubble-two {
+    width: 45px;
+    height: 45px;
+    top: 55%;
+    right: 8%;
+    animation-delay: -3s;
+}
+
+.bubble-four {
+    width: 60px;
+    height: 60px;
+    top: 75%;
+    right: 20%;
+    animation-delay: -2s;
+}
+
+@keyframes bubbleFloat {
+    0%, 100% {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    50% {
+        transform: translate3d(15px, -35px, 20px) rotate(25deg);
+    }
+}
+
+/* 3. Kristal dekorasi */
+.crystal {
+    position: absolute;
+    width: 35px;
+    height: 65px;
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,.9),
+        rgba(216,195,155,.3),
+        rgba(185,150,91,.5)
+    );
+    clip-path: polygon(50% 0, 100% 35%, 75% 100%, 25% 100%, 0 35%);
+    filter: drop-shadow(0 0 12px rgba(185,150,91,.4));
+    animation: crystalFloat 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes crystalFloat {
+    0%, 100% {
+        transform: translateY(0) rotateY(0deg) rotateZ(0deg);
+    }
+    50% {
+        transform: translateY(-22px) rotateY(180deg) rotateZ(15deg);
+    }
+}
+
+/* 4. Efek kartu lebih dramatis */
+.film-card,
+.hobby-card,
+.gallery-item,
+.playlist-card {
+    transform-style: preserve-3d;
+    transition:
+        transform .5s cubic-bezier(.2,.8,.2,1),
+        box-shadow .5s ease;
+}
+
+.film-card:hover,
+.hobby-card:hover,
+.gallery-item:hover,
+.playlist-card:hover {
+    transform: perspective(900px)
+        translateY(-14px)
+        rotateX(7deg)
+        rotateY(-7deg)
+        scale(1.025);
+    box-shadow:
+        0 30px 60px rgba(70,50,25,.18),
+        0 0 30px rgba(216,195,155,.25);
+}
+
+/* 5. Bintang berkelap-kelip */
+.sparkle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow:
+        0 0 8px #fff,
+        0 0 18px #d8c39b,
+        0 0 30px #d8c39b;
+    pointer-events: none;
+    animation: sparkle 2.5s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: .2;
+        transform: scale(.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+/* =====================================
+   LUXURY 3D CELESTIAL ORBIT
+===================================== */
+
+.hero-visual {
+    min-height: 540px;
+    display: grid;
+    place-items: center;
+    position: relative;
+    overflow: visible;
+}
+
+.orbit-system {
+    width: 500px;
+    height: 500px;
+    position: relative;
+    display: grid;
+    place-items: center;
+    perspective: 1000px;
+}
+
+/* Semua cincin */
+.orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    pointer-events: none;
+    transform-style: preserve-3d;
+}
+
+/* Orbit pertama */
+.orbit-one {
+    width: 420px;
+    height: 170px;
+    border: 2px solid rgba(185,150,91,.75);
+    transform: translate(-50%,-50%) rotate(-25deg);
+    box-shadow:
+        0 0 10px rgba(185,150,91,.25),
+        inset 0 0 10px rgba(185,150,91,.12);
+    animation: orbitRotateOne 14s linear infinite;
+}
+
+/* Orbit kedua */
+.orbit-two {
+    width: 380px;
+    height: 250px;
+    border: 1px solid rgba(210,184,139,.9);
+    transform: translate(-50%,-50%) rotate(55deg);
+    animation: orbitRotateTwo 18s linear infinite;
+}
+
+/* Orbit ketiga */
+.orbit-three {
+    width: 460px;
+    height: 300px;
+    border: 1px solid rgba(160,128,83,.45);
+    transform: translate(-50%,-50%) rotate(-65deg);
+    animation: orbitRotateThree 22s linear infinite;
+}
+
+/* Orbit keempat */
+.orbit-four {
+    width: 330px;
+    height: 330px;
+    border: 1px dashed rgba(185,150,91,.35);
+    transform: translate(-50%,-50%);
+    animation: orbitRotateFour 35s linear infinite;
+}
+
+/* Bola planet */
+.orbit-planet {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 30% 25%,
+        #fffefa,
+        #ead9b8 35%,
+        #b9965b 75%,
+        #80603b
+    );
+    box-shadow:
+        inset -5px -5px 10px rgba(91,62,30,.25),
+        0 0 18px rgba(185,150,91,.45);
+}
+
+.planet-one {
+    width: 27px;
+    height: 27px;
+    top: 15%;
+    left: 12%;
+}
+
+.planet-two {
+    width: 19px;
+    height: 19px;
+    top: 75%;
+    right: 10%;
+    background: radial-gradient(circle at 30% 25%, white, #e6d5bd 55%, #b9965b);
+}
+
+.planet-three {
+    width: 34px;
+    height: 34px;
+    top: 8%;
+    right: 18%;
+    background: radial-gradient(circle at 30% 25%, white, #d7c7eb 45%, #9f8caf);
+}
+
+/* Bola kristal */
+.orbit-crystal {
+    position: absolute;
+    border-radius: 50%;
+    backdrop-filter: blur(5px);
+    background: radial-gradient(
+        circle at 30% 25%,
+        rgba(255,255,255,.95),
+        rgba(232,219,193,.55) 35%,
+        rgba(185,150,91,.25) 70%,
+        rgba(255,255,255,.2)
+    );
+    border: 1px solid rgba(255,255,255,.9);
+    box-shadow:
+        inset -8px -8px 18px rgba(185,150,91,.15),
+        0 10px 30px rgba(185,150,91,.18);
+    animation: crystalFloat 5s ease-in-out infinite;
+}
+
+.crystal-one {
+    width: 55px;
+    height: 55px;
+    top: 9%;
+    left: 20%;
+}
+
+.crystal-two {
+    width: 35px;
+    height: 35px;
+    bottom: 14%;
+    right: 15%;
+    animation-delay: -2s;
+}
+
+.crystal-three {
+    width: 22px;
+    height: 22px;
+    top: 20%;
+    right: 10%;
+    animation-delay: -3s;
+}
+
+/* Bintang */
+.orbit-star {
+    position: absolute;
+    color: #b9965b;
+    text-shadow: 0 0 12px rgba(185,150,91,.7);
+    animation: starTwinkle 2s ease-in-out infinite;
+}
+
+.star-one {
+    top: 12%;
+    right: 25%;
+    font-size: 25px;
+}
+
+.star-two {
+    bottom: 20%;
+    left: 15%;
+    font-size: 30px;
+    animation-delay: -1s;
+}
+
+.star-three {
+    top: 48%;
+    right: 2%;
+    font-size: 17px;
+    animation-delay: -.5s;
+}
+
+/* Animasi orbit */
+@keyframes orbitRotateOne {
+    from {
+        transform: translate(-50%,-50%) rotate(-25deg);
+    }
+    to {
+        transform: translate(-50%,-50%) rotate(335deg);
+    }
+}
+
+@keyframes orbitRotateTwo {
+    from {
+        transform: translate(-50%,-50%) rotate(55deg);
+    }
+    to {
+        transform: translate(-50%,-50%) rotate(415deg);
+    }
+}
+
+@keyframes orbitRotateThree {
+    from {
+        transform: translate(-50%,-50%) rotate(-65deg);
+    }
+    to {
+        transform: translate(-50%,-50%) rotate(295deg);
+    }
+}
+
+@keyframes orbitRotateFour {
+    from {
+        transform: translate(-50%,-50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%,-50%) rotate(360deg);
+    }
+}
+
+@keyframes crystalFloat {
+    0%, 100% {
+        translate: 0 0;
+    }
+    50% {
+        translate: 0 -15px;
+    }
+}
+
+@keyframes starTwinkle {
+    0%, 100% {
+        opacity: .35;
+        scale: .8;
+    }
+    50% {
+        opacity: 1;
+        scale: 1.25;
+    }
+}
+
+/* Tampilan HP */
+@media (max-width: 650px) {
+    .hero-visual {
+        min-height: 390px;
+    }
+
+    .orbit-system {
+        width: 350px;
+        height: 350px;
+        transform: scale(.78);
+    }
+}
+
+.spotify-container {
+    width: 100%;
+    max-width: 650px;
+    margin: 30px auto;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(158, 126, 75, 0.848);
+}
+
+.spotify-container iframe {
+    display: block;
+    width: 100%;
+    border: none;
+}
+
+/* MOVIE CARD INTERACTION */
+.movie-card {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(185, 150, 91, 0.2);
+}
+
+
+/* MOVIE POPUP */
+.movie-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000000;
+    background: rgba(20, 18, 15, 0.85);
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.movie-modal.open {
+    display: flex;
+}
+
+.movie-modal .modal-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    width: 100%;
+    max-width: 750px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 30px;
+    border-radius: 20px;
+    background: #f8f5ef;
+    color: #29251f;
+    animation: modalAppear 0.35s ease;
+}
+
+.movie-modal #modalPoster {
+    width: 230px;
+    max-height: 330px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.movie-modal .modal-info {
+    flex: 1;
+}
+
+.movie-modal #modalTitle {
+    margin: 10px 0 12px;
+    font: 32px 'Playfair Display', serif;
+    color: #80633d;
+}
+
+.movie-modal .modal-info p {
+    line-height: 1.7;
+    color: #71675a;
+}
+
+.movie-modal #modalTrailer {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 20px;
+    border-radius: 30px;
+    background: #b9965b;
+    color: white;
+}
+
+.movie-modal .close-modal {
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    z-index: 2;
+    border: none;
+    background: transparent;
+    font-size: 30px;
+    color: #80633d;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 600px) {
+    .movie-modal .modal-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 35px 20px 20px;
+    }
+
+    .movie-modal #modalPoster {
+        width: 160px;
+        max-height: 220px;
+    }
+
+    .movie-modal .modal-info {
+        width: 100%;
+    }
+}
+
+.trailer-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #b9965b;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.trailer-link:hover {
+    color: #29251f;
+    transform: translateX(5px);
+}
+
+/* ABOUT - THREE PHOTO ANIMATION */
+
+.about-photo-gallery {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    height: 430px;
+    margin: auto;
+}
+
+.about-photo {
+    position: absolute;
+    width: 220px;
+    height: 290px;
+    padding: 9px;
+    background: #fffefa;
+    border: 1px solid rgba(185, 150, 91, 0.4);
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(41, 37, 31, 0.15);
+    overflow: hidden;
+    transition: 0.5s ease;
+}
+
+.about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* POSISI FOTO */
+
+.photo-one {
+    top: 35px;
+    left: 0;
+    transform: rotate(-10deg);
+    animation: floatOne 4s ease-in-out infinite;
+}
+
+.photo-two {
+    top: 0;
+    right: 0;
+    transform: rotate(9deg);
+    animation: floatTwo 5s ease-in-out infinite;
+}
+
+.photo-three {
+    bottom: 0;
+    left: 27%;
+    transform: rotate(-2deg);
+    animation: floatThree 4.5s ease-in-out infinite;
+}
+
+/* ANIMASI GERAK */
+
+@keyframes floatOne {
+    0%, 100% {
+        transform: translateY(0) rotate(-10deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(-6deg);
+    }
+}
+
+@keyframes floatTwo {
+    0%, 100% {
+        transform: translateY(0) rotate(9deg);
+    }
+    50% {
+        transform: translateY(15px) rotate(13deg);
+    }
+}
+
+@keyframes floatThree {
+    0%, 100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+        transform: translateY(-12px) rotate(3deg);
+    }
+}
+
+/* HOVER EFFECT */
+
+.about-photo:hover {
+    z-index: 10;
+    scale: 1.08;
+    box-shadow: 0 20px 50px rgba(185, 150, 91, 0.3);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+    .about-photo-gallery {
+        height: 350px;
+        max-width: 340px;
+    }
+
+    .about-photo {
+        width: 165px;
+        height: 225px;
+    }
+}
+
+/* ==================================
+   3D FLOWER PETALS - ABOUT SECTION
+================================== */
+
+.about-3d-scene {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 490px;
+    margin: auto;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    isolation: isolate;
+}
+
+/* FOTO */
+
+.about-3d-card {
+    position: absolute;
+    width: 190px;
+    height: 255px;
+    padding: 1px;
+    border: 1px solid rgba(185, 150, 91, 0.5);
+    border-radius: 17px;
+    background: rgba(255, 254, 250, 0.92);
+    box-shadow: 0 20px 45px rgba(41, 37, 31, 0.2);
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transform-style: preserve-3d;
+}
+
+.about-3d-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 11px;
+}
+
+.card-one {
+    top: 65px;
+    left: 12px;
+    z-index: 3;
+    transform: rotate(-10deg) translateZ(35px);
+}
+
+.card-two {
+    top: 25px;
+    right: 12px;
+    z-index: 4;
+    transform: rotate(9deg) translateZ(80px);
+}
+
+.card-three {
+    bottom: 18px;
+    left: 31%;
+    z-index: 5;
+    transform: rotate(-3deg) translateZ(110px);
+}
+
+.about-3d-card:hover {
+    z-index: 10;
+    box-shadow: 0 30px 60px rgba(185, 150, 91, 0.3);
+}
+
+/* ORBIT AREA */
+
+.petal-orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    z-index: 7;
+    pointer-events: none;
+    transform-style: preserve-3d;
+    animation: petalOrbit var(--duration, 16s) linear infinite;
+    animation-delay: var(--delay, 0s);
+}
+
+.petal-shape {
+    display: block;
+    width: var(--petal-width, 25px);
+    height: var(--petal-height, 43px);
+
+    /* Bentuk kelopak bunga */
+    border-radius: 85% 10% 85% 10%;
+
+    background: linear-gradient(
+        145deg,
+        #fffefa 5%,
+        #f3e5c9 45%,
+        #d8c39b 75%,
+        #b9965b 100%
+    );
+
+    border: 1px solid rgba(206, 175, 120, 0.55);
+
+    box-shadow:
+        inset 3px 3px 8px rgba(255,255,255,0.9),
+        inset -3px -3px 8px rgba(185,150,91,0.18),
+        0 8px 18px rgba(185,150,91,0.2);
+
+    transform: translateX(var(--radius, 180px)) rotate(35deg);
+    transform-style: preserve-3d;
+}
+
+/* ANIMASI FOTO MELAYANG */
+.about-3d-card {
+    animation: photoFloat 4s ease-in-out infinite;
+    will-change: transform;
+}
+
+.card-one {
+    animation-delay: 0s;
+}
+
+.card-two {
+    animation-delay: 0.3s;
+}
+
+.card-three {
+    animation-delay: 0.4s;
+}
+
+@keyframes photoFloat {
+    0%, 100% {
+        translate: 0 0;
+    }
+    50% {
+        translate: 0 -15px;
+    }
+}
+
+/* KELopak BERPUTAR MENGELILINGI FOTO */
+
+@keyframes petalOrbit {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* VARIASI UKURAN, JARAK, DAN KECEPATAN */
+
+.petal-1 {
+    --radius: 185px;
+    --duration: 18s;
+    --delay: 0s;
+    --petal-width: 27px;
+    --petal-height: 45px;
+}
+
+.petal-2 {
+    --radius: 205px;
+    --duration: 21s;
+    --delay: -3s;
+    --petal-width: 20px;
+    --petal-height: 35px;
+}
+
+.petal-3 {
+    --radius: 165px;
+    --duration: 16s;
+    --delay: -5s;
+    --petal-width: 24px;
+    --petal-height: 40px;
+}
+
+.petal-4 {
+    --radius: 220px;
+    --duration: 24s;
+    --delay: -8s;
+    --petal-width: 18px;
+    --petal-height: 31px;
+}
+
+.petal-5 {
+    --radius: 175px;
+    --duration: 19s;
+    --delay: -10s;
+    --petal-width: 22px;
+    --petal-height: 37px;
+}
+
+.petal-6 {
+    --radius: 215px;
+    --duration: 22s;
+    --delay: -12s;
+    --petal-width: 25px;
+    --petal-height: 42px;
+}
+
+.petal-7 {
+    --radius: 155px;
+    --duration: 17s;
+    --delay: -7s;
+    --petal-width: 17px;
+    --petal-height: 30px;
+}
+
+.petal-8 {
+    --radius: 195px;
+    --duration: 23s;
+    --delay: -15s;
+    --petal-width: 21px;
+    --petal-height: 36px;
+}
+
+/* LABEL */
+
+.about-photo-label {
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #b9965b;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    white-space: nowrap;
+    z-index: 8;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+    .about-3d-scene {
+        height: 390px;
+        max-width: 350px;
+    }
+
+    .about-3d-card {
+        width: 145px;
+        height: 205px;
+    }
+
+    .card-one {
+        top: 55px;
+        left: 8px;
+    }
+
+    .card-two {
+        top: 25px;
+        right: 8px;
+    }
+
+    .card-three {
+        left: 29%;
+        bottom: 20px;
+    }
+    .petal-1 { --radius: 1400px; }
+    .petal-2 { --radius: 150px; }
+    .petal-3 { --radius: 125px; }
+    .petal-4 { --radius: 160px; }
+    .petal-5 { --radius: 135px; }
+    .petal-6 { --radius: 155px; }
+    .petal-7 { --radius: 120px; }
+    .petal-8 { --radius: 145px; }
+
+    .petal-shape {
+        transform: translateX(var(--radius)) scale(0.8) rotate(35deg);
+    }
+}
+
+/* HORMATI PENGATURAN REDUCE MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+    .petal-orbit {
+        animation: step-end;
+    }
+}
+
+
+
+/* =====================================
+   PIECES OF ME — 3D COVERFLOW GALLERY
+===================================== */
+
+#gallery .gallery-grid {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 440px;
+    margin: 35px auto 50px;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    overflow: visible;
+    touch-action: pan-y;
+    cursor: grab;
+    user-select: none;
+}
+
+#gallery .gallery-grid:active {
+    cursor: grabbing;
+}
+
+/* Kartu foto */
+#gallery .gallery-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 270px;
+    height: 340px;
+
+    overflow: hidden;
+    border: 3px solid rgba(255, 254, 250, 0.9);
+    border-radius: 18px;
+
+    background: #eee5d7;
+    box-shadow: 0 18px 45px rgba(69, 53, 31, 0.18);
+
+    transform-style: preserve-3d;
+    transform:
+        translate(-50%, -50%)
+        translateX(var(--card-x, 0px))
+        translateZ(var(--card-z, 0px))
+        rotateY(var(--card-rotate, 0deg))
+        scale(var(--card-scale, 1));
+
+    opacity: var(--card-opacity, 1);
+    z-index: var(--card-layer, 1);
+
+    transition:
+        transform 0.75s cubic-bezier(.2, .75, .25, 1),
+        opacity 0.75s ease,
+        box-shadow 0.5s ease;
+
+    pointer-events: var(--card-pointer, none);
+    will-change: transform, opacity;
+}
+
+/* Foto di dalam kartu */
+#gallery .gallery-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transform: none;
+    transition: transform 0.6s ease;
+    pointer-events: none;
+}
+
+/* Foto utama */
+#gallery .gallery-item.is-active {
+    border-color: rgba(216, 195, 155, 0.95);
+    box-shadow:
+        0 25px 60px rgba(69, 53, 31, 0.24),
+        0 0 25px rgba(216, 195, 155, 0.3);
+}
+
+/* Efek saat foto utama diarahkan kursor */
+#gallery .gallery-item.is-active:hover img {
+    transform: scale(1.04);
+}
+
+/* Label foto */
+#gallery .gallery-item span {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 18px 14px 13px;
+    z-index: 2;
+    text-align: center;
+    color: #fffefa;
+    background: linear-gradient(
+        transparent,
+        rgba(30, 25, 19, 0.72)
+    );
+    font-size: 10px;
+    letter-spacing: 2px;
+    pointer-events: none;
+}
+
+/* Responsif untuk HP */
+@media (max-width: 650px) {
+    #gallery .gallery-grid {
+        height: 350px;
+        perspective: 900px;
+    }
+
+    #gallery .gallery-item {
+        width: 195px;
+        height: 260px;
+    }
+}
+
+/* Menghormati pengaturan pengurangan animasi */
+@media (prefers-reduced-motion: reduce) {
+    #gallery .gallery-item {
+        transition: none;
+    }
+}
+
+
+/* GALLERY COVERFLOW - FINAL OVERRIDE */
+
+#gallery .gallery-grid {
+    display: block !important;
+    position: relative;
+    width: 100%;
+    height: 430px;
+    margin: 35px auto;
+    perspective: 1200px;
+    overflow: hidden;
+    touch-action: pan-y;
+}
+
+#gallery .gallery-item {
+    display: block !important;
+    position: absolute !important;
+    width: 250px;
+    height: 320px;
+    top: 50%;
+    left: 50%;
+    grid-row: auto !important;
+    grid-column: auto !important;
+    overflow: hidden;
+    border: 3px solid #fffefa;
+    border-radius: 16px;
+    box-shadow: 0 20px 45px rgba(69, 53, 31, .2);
+    transition: transform .7s ease, opacity .7s ease;
+    transform:
+        translate(-50%, -50%)
+        translateX(var(--x, 0px))
+        translateZ(var(--z, 0px))
+        rotateY(var(--r, 0deg))
+        scale(var(--s, 1));
+    opacity: var(--o, 1);
+    z-index: var(--layer, 1);
+    pointer-events: auto;
+}
+
+#gallery .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+#gallery .gallery-item span {
+    z-index: 3;
+    pointer-events: none;
+}
+
+@media(max-width: 650px) {
+    #gallery .gallery-grid {
+        height: 340px;
+        perspective: 900px;
+    }
+
+    #gallery .gallery-item {
+        width: 175px;
+        height: 235px;
+    }
+}
+
+
+/* =================================
+   BOTANICAL FLOWER DECORATIONS
+================================= */
+
+.flower-decor {
+    position: fixed;
+    width: 190px;
+    height: 250px;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0.78;
+    animation: flowerFloat 6s ease-in-out infinite;
+}
+
+.flower-decor img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Kiri bawah */
+.flower-bottom-left {
+    bottom: -35px;
+    left: -35px;
+    transform: rotate(15deg);
+    animation-delay: -3s;
+}
+
+/* Kanan bawah */
+.flower-bottom-right {
+    bottom: -35px;
+    right: -35px;
+    transform: scaleX(-1) rotate(45deg);
+    animation-delay: -1s;
+}
+
+/* Gerakan lembut */
+@keyframes flowerFloat {
+    0%, 100% {
+        translate: 0 0;
+    }
+
+    50% {
+        translate: 0 -12px;
+    }
+}
+
+/* Tampilan HP */
+@media (max-width: 650px) {
+    .flower-decor {
+        width: 110px;
+        height: 160px;
+        opacity: 0.55;
+    }
+
+    .flower-bottom-left {
+        left: -25px;
+        bottom: -25px;
+    }
+
+    .flower-bottom-right {
+        right: -25px;
+        bottom: -25px;
+    }
+}
+
+/* GOLDEN SPARKLE DIAGONAL SWEEP */
+.sparkle-intro {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    pointer-events: none;
+    overflow: hidden;
+    animation: sparkleFade 2s ease forwards;
+}
+
+.sparkle-intro span {
+    position: absolute;
+    border-radius: 50%;
+    background: #fffefa;
+    box-shadow:
+        0 0 6px #fffefa,
+        0 0 12px #d8c39b,
+        0 0 20px #b9965b;
+
+    animation: sparkleDiagonal 2.0s ease-out forwards;
+}
+
+@keyframes sparkleDiagonal {
+    0% {
+        transform: translate(0, 0) scale(0);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+        transform: translate(-30px, 30px) scale(1.5);
+    }
+
+    100% {
+        transform: translate(-110vw, 110vh) scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes sparkleFade {
+    0%, 75% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+}
